@@ -5,7 +5,7 @@ import { createDish } from '../../api/dishes'
 import messages from "../shared/AutoDismissAlert/messages"
 
 const NewDishModal = (props) => {
-    const {user, food, show, handleClose, msgAlert, triggerRefresh } = props
+    const { food, show, handleClose, msgAlert, triggerRefresh } = props
 
     const [dish, setDish] = useState({})
 

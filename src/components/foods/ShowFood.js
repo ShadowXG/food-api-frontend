@@ -133,7 +133,6 @@ const ShowFood = (props) => {
                 food={food}
             />
             <NewDishModal 
-                user={user}
                 food={food}
                 show={dishModalShow}
                 handleClose={() => setDishModalShow(false)}
