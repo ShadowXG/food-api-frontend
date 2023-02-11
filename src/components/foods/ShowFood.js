@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { Container, Card, Button } from "react-bootstrap"
-import { getOneFood } from "../../api/foods"
+import { getOneFood, deleteFood } from "../../api/foods"
 import messages from "../shared/AutoDismissAlert/messages"
 import LoadingScreen from "../shared/LoadingScreen"
 
@@ -13,6 +13,7 @@ const ShowFood = (props) => {
     const [food, setFood] = useState(null)
 
     const { id } = useParams()
+    const navigate = useNavigate()
 
     const { user, msgAlert } = props
 
@@ -27,6 +28,25 @@ const ShowFood = (props) => {
                 })
             })
     }, [])
+
+    const removeFood = () => {
+        deleteFood(user, food.id)
+            .then(() => {
+                msgAlert({
+                    heading: 'Success',
+                    message: messages.deleteFoodSuccess,
+                    variant: 'success'
+                })
+            })
+            .then(() => {navigate('/')})
+            .catch(err => {
+                msgAlert({
+                    heading: 'Error',
+                    message: messages.deleteFoodFailure,
+                    variant: 'danger'
+                })
+            })
+    }
 
     if(!food) {
         return <LoadingScreen />
@@ -43,6 +63,22 @@ const ShowFood = (props) => {
                             <div><small>Cost: { food.cost }</small></div>
                         </Card.Text>
                     </Card.Body>
+                    <Card.Footer>
+                        {
+                            food.owner && user && food.owner._id === user._id
+                            ?
+                            <>
+                                <Button 
+                                    className="m-2" variant="danger"
+                                    onClick={() => removeFood()}
+                                >
+                                    Throw Away {food.name}
+                                </Button>
+                            </>
+                            :
+                            null
+                        }
+                    </Card.Footer>
                 </Card>
             </Container>
         </>

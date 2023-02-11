@@ -9,6 +9,8 @@ const messages = {
 	getFoodsFailure:'Failed to get any food!',
 	createFoodSuccess: 'New food has been created! Yummy!',
 	createFoodFailure: 'Failed to create food, please try again!',
+	deleteFoodSuccess: 'The food has been thrown away.',
+	deleteFoodFailure: 'Failed to delete food, please try again!',
 }
 
 module.exports = messages
