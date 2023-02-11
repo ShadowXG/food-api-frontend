@@ -25,6 +25,16 @@ export const createFood = (user, newFood) => {
 }
 
 // Update (update a food)
+export const updateFood = (user, updatedFood) => {
+    return axios({
+        url: `${apiUrl}/foods/${updatedFood.id}`,
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: { food: updatedFood }
+    })
+}
 
 // Delete (delete a food)
 export const deleteFood = (user, foodId) => {

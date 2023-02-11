@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { Container, Card, Button } from "react-bootstrap"
-import { getOneFood, deleteFood } from "../../api/foods"
+import { getOneFood, deleteFood, updateFood } from "../../api/foods"
 import messages from "../shared/AutoDismissAlert/messages"
 import LoadingScreen from "../shared/LoadingScreen"
+import EditFoodModal from "./EditFoodModal"
 
 // need to get the id from the params
 // then make a request to the api
@@ -11,6 +12,8 @@ import LoadingScreen from "../shared/LoadingScreen"
 
 const ShowFood = (props) => {
     const [food, setFood] = useState(null)
+    const [editModalShow, setEditModalShow] = useState(false)
+    const [updated, setUpdated] = useState(false)
 
     const { id } = useParams()
     const navigate = useNavigate()
@@ -27,7 +30,7 @@ const ShowFood = (props) => {
                     variant: 'danger'
                 })
             })
-    }, [])
+    }, [updated])
 
     const removeFood = () => {
         deleteFood(user, food.id)
@@ -69,6 +72,12 @@ const ShowFood = (props) => {
                             ?
                             <>
                                 <Button 
+                                    className="m-2" variant="warning"
+                                    onClick={() => setEditModalShow(true)}
+                                >
+                                    Edit {food.name}
+                                </Button>
+                                <Button 
                                     className="m-2" variant="danger"
                                     onClick={() => removeFood()}
                                 >
@@ -81,6 +90,15 @@ const ShowFood = (props) => {
                     </Card.Footer>
                 </Card>
             </Container>
+            <EditFoodModal 
+                user={user}
+                show={editModalShow}
+                handleClose={() => setEditModalShow(false)}
+                updateFood={updateFood}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                food={food}
+            />
         </>
     )
 }
