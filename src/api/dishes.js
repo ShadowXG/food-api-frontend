@@ -16,7 +16,7 @@ export const createDish = (foodId, newDish) => {
 // /dishes/:foodId/:dishId
 export const updateDish = (user, foodId, updatedDish) => {
     return axios({
-        url: `${apiUrl}/dishes/${foodId}/${updatedDish.id}`,
+        url: `${apiUrl}/dishes/${foodId}/${updatedDish._id}`,
         method: 'PATCH',
         headers: {
             Authorization: `Token token=${user.token}`

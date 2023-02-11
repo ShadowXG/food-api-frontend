@@ -1,9 +1,13 @@
+import { useState } from "react"
 import { Card, Button } from "react-bootstrap"
 import { deleteDish } from "../../api/dishes"
 import messages from "../shared/AutoDismissAlert/messages"
+import EditDishModal from "./EditDishModal"
 
 const ShowDish = (props) => {
     const { dish, user, food, msgAlert, triggerRefresh } = props
+
+    const [editModalShow, setEditModalShow] = useState(false)
 
     const removeDish = () => {
         deleteDish(user, food.id, dish._id)
@@ -38,6 +42,13 @@ const ShowDish = (props) => {
                         ?
                         <>
                             <Button
+                                onClick={() => setEditModalShow(true)}
+                                variant="warning"
+                                className="m-2"
+                            >
+                                Edit Dish
+                            </Button>
+                            <Button
                                 onClick={() => removeDish()}
                                 variant="danger"
                                 className="m-2"
@@ -50,6 +61,15 @@ const ShowDish = (props) => {
                     }
                 </Card.Footer>
             </Card>
+            <EditDishModal 
+                user={user}
+                food={food}
+                dish={dish}
+                show={editModalShow}
+                handleClose={() => setEditModalShow(false)}
+                msgAlert={msgAlert}
+                triggerRefresh={triggerRefresh}
+            />
         </>
     )
 }
