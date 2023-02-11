@@ -6,6 +6,7 @@ import messages from "../shared/AutoDismissAlert/messages"
 import LoadingScreen from "../shared/LoadingScreen"
 import EditFoodModal from "./EditFoodModal"
 import ShowDish from "../dishes/ShowDish"
+import NewDishModal from "../dishes/NewDishModal"
 
 // need to get the id from the params
 // then make a request to the api
@@ -19,6 +20,7 @@ const dishCardContainerLayout = {
 const ShowFood = (props) => {
     const [food, setFood] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
+    const [dishModalShow, setDishModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
 
     const { id } = useParams()
@@ -85,6 +87,12 @@ const ShowFood = (props) => {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
+                        <Button 
+                            className="m-2" variant="info"
+                            onClick={() => setDishModalShow(true)}
+                        >
+                            Give {food.name} a dish!
+                        </Button>
                         {
                             food.owner && user && food.owner._id === user._id
                             ?
@@ -119,6 +127,14 @@ const ShowFood = (props) => {
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 food={food}
+            />
+            <NewDishModal 
+                user={user}
+                food={food}
+                show={dishModalShow}
+                handleClose={() => setDishModalShow(false)}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
             />
         </>
     )
