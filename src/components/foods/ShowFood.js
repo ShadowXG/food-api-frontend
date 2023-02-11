@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { Container, Card, Button } from "react-bootstrap"
 import { getOneFood } from "../../api/foods"
 import messages from "../shared/AutoDismissAlert/messages"
+import LoadingScreen from "../shared/LoadingScreen"
 
 // need to get the id from the params
 // then make a request to the api
@@ -28,7 +29,7 @@ const ShowFood = (props) => {
     }, [])
 
     if(!food) {
-        return <p>loading...</p>
+        return <LoadingScreen />
     }
 
     return (

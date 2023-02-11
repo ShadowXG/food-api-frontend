@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import Card from "react-bootstrap/Card"
 import { Link } from "react-router-dom"
+import LoadingScreen from "../shared/LoadingScreen"
 
 // api function from api file
 import { getAllFoods } from "../../api/foods"
@@ -43,7 +44,7 @@ const FoodsIndex = (props) => {
 
     if (!foods) {
         // if no foods display loading
-        return <p>...loading...</p>
+        return <LoadingScreen />
     } else if (foods.length === 0) {
         return <p>No foods yet, go add some!</p>
     }
