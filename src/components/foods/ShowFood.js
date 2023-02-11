@@ -5,11 +5,17 @@ import { getOneFood, deleteFood, updateFood } from "../../api/foods"
 import messages from "../shared/AutoDismissAlert/messages"
 import LoadingScreen from "../shared/LoadingScreen"
 import EditFoodModal from "./EditFoodModal"
+import ShowDish from "../dishes/ShowDish"
 
 // need to get the id from the params
 // then make a request to the api
 // when the food is retrieved we'll render the data on the screen
 
+const dishCardContainerLayout = {
+    display: 'flex',
+    justifyContent: 'center',
+    flexFlow: 'row wrap'
+}
 const ShowFood = (props) => {
     const [food, setFood] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
@@ -51,6 +57,18 @@ const ShowFood = (props) => {
             })
     }
 
+    let dishCards
+    if (food) {
+        if (food.dishes.length > 0) {
+            dishCards = food.dishes.map(dish => (
+                <ShowDish 
+                    key={dish.id}
+                    dish={dish}
+                />
+            ))
+        }
+    }
+
     if(!food) {
         return <LoadingScreen />
     }
@@ -63,7 +81,7 @@ const ShowFood = (props) => {
                     <Card.Body>
                         <Card.Text>
                             <div><small>Category: { food.category }</small></div>
-                            <div><small>Cost: { food.cost }</small></div>
+                            <div><small>Cost: ${ food.cost }</small></div>
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
@@ -89,6 +107,9 @@ const ShowFood = (props) => {
                         }
                     </Card.Footer>
                 </Card>
+            </Container>
+            <Container className="m-2" style={dishCardContainerLayout}>
+                {dishCards}
             </Container>
             <EditFoodModal 
                 user={user}
