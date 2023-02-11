@@ -24,6 +24,7 @@ export const updateDish = (user, foodId, updatedDish) => {
         data: { dish: updatedDish }
     })
 }
+
 // DELETE
 // /dishes/:foodId/:dishId
 export const deleteDish = (user, foodId, dishId) => {
