@@ -66,6 +66,10 @@ const ShowFood = (props) => {
                 <ShowDish 
                     key={dish.id}
                     dish={dish}
+                    user={user}
+                    food={food}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
                 />
             ))
         }
