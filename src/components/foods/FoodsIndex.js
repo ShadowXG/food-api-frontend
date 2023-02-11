@@ -58,6 +58,11 @@ const FoodsIndex = (props) => {
                 <Card.Text>
                     <Link to={`/foods/${food.id}`} className="btn btn-info">View { food.name }</Link>
                 </Card.Text>
+                { food.owner ?
+                    <Card.Footer>
+                        owner: {food.owner.email}
+                    </Card.Footer>
+                : null }
             </Card.Body>
         </Card>
     ))

@@ -12,6 +12,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import ShowFood from './components/foods/ShowFood'
+import CreateFood from './components/foods/CreateFood'
 
 const App = () => {
 
@@ -66,6 +67,13 @@ const App = () => {
             		element={
               			<RequireAuth user={user}>
                 			<ChangePassword msgAlert={msgAlert} user={user} />
+              			</RequireAuth>}
+          		/>
+          		<Route
+            		path='/create-food'
+            		element={
+              			<RequireAuth user={user}>
+                			<CreateFood msgAlert={msgAlert} user={user} />
               			</RequireAuth>}
           		/>
 				<Route 

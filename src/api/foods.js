@@ -13,6 +13,16 @@ export const getOneFood = (id) => {
 }
 
 // Create (create a food)
+export const createFood = (user, newFood) => {
+    return axios({
+        url: `${apiUrl}/foods`,
+        method: 'POST',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: { food: newFood }
+    })
+}
 
 // Update (update a food)
 

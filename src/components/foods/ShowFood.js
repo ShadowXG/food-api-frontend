@@ -34,7 +34,7 @@ const ShowFood = (props) => {
 
     return (
         <>
-            <Container>
+            <Container className="m-2">
                 <Card>
                     <Card.Header>{ food.fullTitle }</Card.Header>
                     <Card.Body>
