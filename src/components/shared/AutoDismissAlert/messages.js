@@ -6,6 +6,7 @@ const messages = {
 	signOutSuccess: 'Come back soon!',
 	changePasswordSuccess: 'Password changed successfully!',
 	changePasswordFailure:'Failed to change passwords. Check your old password and try again.',
+	getFoodsFailure:'Failed to get any food!',
 }
 
 module.exports = messages
