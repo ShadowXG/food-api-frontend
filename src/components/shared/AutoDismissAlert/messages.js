@@ -13,6 +13,8 @@ const messages = {
 	updateFoodFailure: 'Failed to update food, please try again!',
 	deleteFoodSuccess: 'The food has been thrown away.',
 	deleteFoodFailure: 'Failed to delete food, please try again!',
+	createDishSuccess: 'New dish has been created! Yummy!',
+	createDishFailure: 'Failed to create dish, please try again!',
 }
 
 module.exports = messages

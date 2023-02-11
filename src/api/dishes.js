@@ -4,10 +4,11 @@ import axios from 'axios'
 // CREATE
 // /dishes/:foodId
 export const createDish = (foodId, newDish) => {
+    console.log(foodId)
     return axios({
         url: `${apiUrl}/dishes/${foodId}`,
         method: 'POST',
-        data: { food: newDish }
+        data: { dish: newDish }
     })
 }
 
@@ -20,7 +21,7 @@ export const updateDish = (user, foodId, updatedDish) => {
         headers: {
             Authorization: `Token token=${user.token}`
         },
-        data: { food: updatedDish }
+        data: { dish: updatedDish }
     })
 }
 // DELETE
